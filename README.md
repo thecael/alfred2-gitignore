@@ -25,7 +25,7 @@ gitignore-update
 ```
 
 Executing this will clone the [github/gitignore](https://github.com/github/gitignore)
-repository, and make the templates in it available to you.
+repository, and make the templates in it available for offline use.
 
 ## Usage
 
