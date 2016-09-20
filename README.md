@@ -46,7 +46,7 @@ after three days.
 
 ## License
 
-Copyright (c) 2015 Jan David Nose
+Copyright (c) 2015-2016 Jan David Nose
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
