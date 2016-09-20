@@ -1,10 +1,17 @@
 # encoding: utf-8
+"""
+Update local clone of github/gitignore repository.
 
+At its core, this plugin makes use of the github/gitignore repository to get
+up-to-date and peer-reviewed templates for .gitignore files. This module keeps
+the local clone of this repository up-to-date.
+"""
 import os
 import re
 import sys
-from sh import git, pwd, sh
-from workflow import Workflow, ICON_SYNC, web
+
+from sh import git
+from workflow import Workflow
 
 workflow = Workflow()
 repo_dir = workflow.datafile("gitignore")
@@ -16,8 +23,10 @@ def main(wf):
 
     This script checks whether or not the gitignore repository has already been
     cloned, and either clones it or pulls the latest changes from the remote
-    repository. In both cases, the list of templates is stored in the persistent
-    storage provided by the Workflow's data API.
+    repository. In both cases, the list of templates is stored in the
+    persistent storage provided by the Workflow's data API.
+
+    :param wf: The workflow object
     """
     if not os.path.isdir(repo_dir):
         clone_repo()
@@ -34,9 +43,9 @@ def clone_repo():
     Clone the Git repository 'github/gitignore' to the data directory.
 
     This function clones the gitignore repository from GitHub and saves the
-    local copy in the workflow's data directory. It uses the module sh to invoke
-    the git executable. If the git executable cannot execute properly, an
-    exception is thrown.
+    local copy in the workflow's data directory. It uses the module sh to
+    invoke the git executable. If the git executable cannot execute properly,
+    an exception is thrown.
     """
     try:
         os.chdir(workflow.datafile(""))
@@ -66,15 +75,19 @@ def handle_exception():
     """
     Handle the last thrown exception.
 
-    This function handles the last thrown exception. It compares the exception's
-    class to a number of known exceptions, and prints the respective error
-    message. If the exception is not known, a generic error message is printed.
+    This function handles the last thrown exception. It compares the
+    exception's class to a number of known exceptions, and prints the
+    respective error message. If the exception is not known, a generic error
+    message is printed.
     """
     e = sys.exc_info()[0]
     if e.__name__ == "ErrorReturnCode_128":
-        print "'git clone' failed due to an unknown reason. Please contact the support."
+        print (
+            "'git clone' failed due to an unknown reason. Please contact the "
+            "support."
+        )
     else:
-        print "An unknown error occured. Please contact the support."
+        print "An unknown error occurred. Please contact the support."
     sys.exit(-1)
 
 
@@ -113,6 +126,8 @@ def get_template_names():
     This function goes recursively through the local copy of the gitignore
     repository, and returns the name of all templates within it. Templates are
     identified by their file extension, which is '.gitignore'.
+
+    :return: The names of all existing templates as an array
     """
     file_names = get_file_names_in_dir(repo_dir)
     templates = []
@@ -129,11 +144,11 @@ def get_file_names_in_dir(directory):
     """
     Return the names of all files in the given directory.
 
-    Arguments:
-    - directory: Path of the directory whose files should be returned
-
     This function goes recursively through the given directory and returns the
     name of all files within it.
+
+    :param directory: The path to the directory whose files should be returned
+    :return: A list of all files in the given directory
     """
     file_names = []
 

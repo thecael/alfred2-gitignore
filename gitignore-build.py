@@ -1,15 +1,36 @@
 # encoding: utf-8
+"""
+Build a .gitignore file from a list of templates.
 
-import glob
+This script builds a .gitignore file from a list of template names. Each
+template is looked up in the local clone of the github/gitignore repository,
+and then written to a temporary .gitignore file.
+"""
 import hashlib
 import os
 import sys
-from workflow import Workflow, ICON_SYNC, ICON_WARNING, web
+
+from workflow import Workflow
 
 workflow = Workflow()
 repo_dir = workflow.datafile("gitignore")
 
+
 def main(wf):
+    """
+    Build a .gitignore file from a list of templates.
+
+    This method builds a .gitignore file from a list of templates, supplied as
+    arguments to the script (i.e. argv). Each template name is compared against
+    the templates in the github/gitignore repository, and if the names match,
+    that .gitignore template is written to the temporary .gitignore file for
+    the user.
+
+    The scripts output on STDOUT is used by Alfred as the content of a
+    notification. This way, the user can be notified of the build's result.
+
+    :param wf: The workflow object
+    """
     if len(sys.argv) < 2:
         print "No templates were selected, so nothing was built."
         return
