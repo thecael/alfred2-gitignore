@@ -35,8 +35,6 @@ def main(wf):
     args = parser.parse_args(wf.args)
     templates = wf.stored_data("templates")
 
-    current_query = ""
-
     if len is None:
         wf.add_item(
             title="Templates missing",
@@ -109,8 +107,6 @@ def build_autocomplete(template_name, query):
     :param query: The complete query
     :return: The new query
     """
-    autocomplete = ""
-
     if len(query) > 0:
         autocomplete = " ".join([query, template_name])
     else:
