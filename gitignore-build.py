@@ -6,9 +6,9 @@ This script builds a .gitignore file from a list of template names. Each
 template is looked up in the local clone of the github/gitignore repository,
 and then written to a temporary .gitignore file.
 """
-import hashlib
 import os
 import sys
+import time
 
 from workflow import Workflow
 
@@ -40,8 +40,8 @@ def main(wf):
 
     templates = sys.argv[1:]
 
-    tmp_file_name = hashlib.md5(" ".join(templates)).hexdigest()
-    tmp_file_path = "/tmp/" + tmp_file_name
+    timestamp = str(time.time()).replace('.', '')
+    tmp_file_path = "/tmp/{}.gitignore".format(timestamp)
 
     if os.path.isfile(tmp_file_path):
         os.system("open %s" % tmp_file_path)
