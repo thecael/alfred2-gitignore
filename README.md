@@ -1,4 +1,5 @@
 # gitignore
+
 > Build _.gitignore_ files with Alfred.
 
 **gitignore** is an [Alfred](https://www.alfredapp.com) workflow that lets you
@@ -17,8 +18,9 @@ this workflow:
 
 ## Installation
 
-After installing the workflow, you need to download the templates. Enter the
-following command into Alfred:
+Go to [Packal](http://www.packal.org/), and download the [gitignore](http://www.packal.org/workflow/gitignore-0)
+workflow. After installing it, you need to download the templates for offline
+use. Enter the following command into Alfred:
 
 ```
 gitignore-update
@@ -43,6 +45,28 @@ in your project.
 
 The temporary file is created in `/tmp/`, and will automatically be deleted
 after three days.
+
+## Development
+
+If you want to contribute to this workflow, feel free to do so. The easiest way
+to get involved is to create an issue on GitHub and start a conversation about
+a feature you're missing or an issue you're having.
+
+Pull requests will only be merged if the code adheres to the Python style
+guidelines and does not break the tests. To make sure both requirements are
+fulfilled, install the linter and test suite locally:
+
+    pip install -r requirements
+    
+You can lint the code with [flake8](http://flake8.pycqa.org/en/latest/):
+
+    flake8 gitignore-*
+    
+And test it with [pytest](http://doc.pytest.org/en/latest/):
+
+    pytest tests/
+    
+Thanks already for your contributions.
 
 ## License
 
