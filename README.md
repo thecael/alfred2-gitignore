@@ -1,5 +1,5 @@
 # gitignore
-## Build _.gitignore_ files with Alfred.
+> Build _.gitignore_ files with Alfred.
 
 **gitignore** is an [Alfred](https://www.alfredapp.com) workflow that lets you
 create _.gitignore_ files from Alfred's input interface. It uses templates
